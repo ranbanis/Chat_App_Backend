@@ -1,6 +1,7 @@
 const express = require("express");
 const port = 3000;
 const app = express();
+const IP = require("ip");
 const bodyParser = require("body-parser");
 require("./db");
 require("./models/User");
@@ -53,7 +54,10 @@ io.on("connection", (socket) => {
 
 httpServer.listen(3001);
 
+const ipAddress = IP.address();
 // ...
-app.listen(process.env.PORT || port, () => {
+app.listen(port, () => {
+  console.log(ipAddress);
+
   console.log("Server is running on port " + port);
 });
